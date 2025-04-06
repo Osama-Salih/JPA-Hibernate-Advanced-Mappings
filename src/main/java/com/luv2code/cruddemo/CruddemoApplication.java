@@ -18,35 +18,47 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			createInstructor(appDAO);
+//			createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
 	}
 
-	private void createInstructor(AppDAO appDAO) {
+	private void findInstructor(AppDAO appDAO) {
+
+		int instructorId = 2;
+		System.out.println("Finding instructor id: " + instructorId);
+
+		Instructor instructor = appDAO.findInstructor(instructorId);
+
+		System.out.println("instructor: " + instructor);
+		System.out.println("the associated Instructor detail only: " + instructor.getInstructorDetail());
+	}
+
+//	private void createInstructor(AppDAO appDAO) {
+////		// Create instructor
+////		Instructor instructor = new Instructor("Osama", "Salih", "osama@luv2code.com");
+////
+////		// Create instructorDetail
+////		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtupe", "luv 2 code");
+////
+////
+////		instructor.setInstructorDetail(instructorDetail);
+//
 //		// Create instructor
-//		Instructor instructor = new Instructor("Osama", "Salih", "osama@luv2code.com");
+//		Instructor instructor = new Instructor("Madhu", "Patel", "madhu@luv2code.com");
 //
 //		// Create instructorDetail
-//		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtupe", "luv 2 code");
+//		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtube", "Guitar");
 //
 //
 //		instructor.setInstructorDetail(instructorDetail);
-
-		// Create instructor
-		Instructor instructor = new Instructor("Madhu", "Patel", "madhu@luv2code.com");
-
-		// Create instructorDetail
-		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtube", "Guitar");
-
-
-		instructor.setInstructorDetail(instructorDetail);
-
-		/*
-		* NOTE: this will ALSO save the details object
-		* */
-		System.out.println("Saving the instructor: " + instructor);
-		appDAO.save(instructor);
-
-		System.out.println("Done");
-	}
+//
+//		/*
+//		* NOTE: this will ALSO save the details object
+//		* */
+//		System.out.println("Saving the instructor: " + instructor);
+//		appDAO.save(instructor);
+//
+//		System.out.println("Done");
+//	}
 }
