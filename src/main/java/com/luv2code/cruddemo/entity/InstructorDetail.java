@@ -2,7 +2,7 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
-@Table(name="instructor-detail")
+@Table(name="instructor_detail")
 @Entity
 public class InstructorDetail {
 
