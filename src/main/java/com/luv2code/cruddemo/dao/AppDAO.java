@@ -1,6 +1,7 @@
 package com.luv2code.cruddemo.dao;
 
 import com.luv2code.cruddemo.entity.Instructor;
+import com.luv2code.cruddemo.entity.InstructorDetail;
 
 public interface AppDAO {
 
@@ -9,4 +10,6 @@ public interface AppDAO {
     Instructor findInstructor(int id);
 
     void deleteInstructor(int id);
+
+    InstructorDetail findInstructorDetail(int id);
 }
