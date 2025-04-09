@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -25,46 +27,62 @@ public class CruddemoApplication {
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
 //			createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+//			findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
 	}
 
-	private void findInstructorWithCourses(AppDAO appDAO) {
+	private void findCoursesForInstructor(AppDAO appDAO) {
 		int id = 1;
 		System.out.println("Finding instructor id: " + id);
 
 		Instructor instructor = appDAO.findInstructor(id);
 
 		System.out.println("Instructor: " + instructor);
-		System.out.println("The associated courses: " + instructor.getCourses());
 
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+
+		instructor.setCourses(courses);
+		System.out.println("The associated courses: " + instructor.getCourses());
 		System.out.println("Done!");
 	}
 
-	private void createInstructorWithCourses(AppDAO appDAO) {
-		// Create instructor
-		Instructor instructor = new Instructor("Susan", "Public", "susan.public@luv2code.com");
+//	private void findInstructorWithCourses(AppDAO appDAO) {
+//		int id = 1;
+//		System.out.println("Finding instructor id: " + id);
+//
+//		Instructor instructor = appDAO.findInstructor(id);
+//
+//		System.out.println("Instructor: " + instructor);
+//		System.out.println("The associated courses: " + instructor.getCourses());
+//
+//		System.out.println("Done!");
+//	}
 
-		// Create instructorDetail
-		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtube", "Video game");
-
-		instructor.setInstructorDetail(instructorDetail);
-
-		// Create some courses
-		Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
-		Course  tempCourse2 = new Course("The Pinball Masterclass");
-
-		// add courses to instructor
-		instructor.add(tempCourse1);
-		instructor.add(tempCourse2);
-
-
-		// save the instructor
-		// Note: this will ALSO save the courses because of CascadeType.PERSIST
-		System.out.println("Saving instructor: " + instructor);
-		System.out.println("Courses: " + instructor.getCourses());
-		appDAO.save(instructor);
-	}
+//	private void createInstructorWithCourses(AppDAO appDAO) {
+//		// Create instructor
+//		Instructor instructor = new Instructor("Susan", "Public", "susan.public@luv2code.com");
+//
+//		// Create instructorDetail
+//		InstructorDetail instructorDetail = new InstructorDetail("www.luv2code.com/youtube", "Video game");
+//
+//		instructor.setInstructorDetail(instructorDetail);
+//
+//		// Create some courses
+//		Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
+//		Course  tempCourse2 = new Course("The Pinball Masterclass");
+//
+//		// add courses to instructor
+//		instructor.add(tempCourse1);
+//		instructor.add(tempCourse2);
+//
+//
+//		// save the instructor
+//		// Note: this will ALSO save the courses because of CascadeType.PERSIST
+//		System.out.println("Saving instructor: " + instructor);
+//		System.out.println("Courses: " + instructor.getCourses());
+//		appDAO.save(instructor);
+//	}
 
 //	private void deleteInstructorDetail(AppDAO appDAO) {
 //
