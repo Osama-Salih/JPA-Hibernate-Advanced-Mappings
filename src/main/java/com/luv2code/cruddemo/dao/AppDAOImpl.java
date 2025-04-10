@@ -38,6 +38,14 @@ public class AppDAOImpl implements AppDAO {
         @Transactional
         public void deleteInstructor(int id) {
                 Instructor instructor = entityManager.find(Instructor.class, id);
+
+                // Get the instructor's courses
+                List<Course> courses = instructor.getCourses();
+
+                for (Course course : courses) {
+                    course.setInstructor(null);
+                }
+
                 entityManager.remove(instructor);
         }
 
