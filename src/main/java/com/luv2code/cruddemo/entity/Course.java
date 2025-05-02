@@ -1,6 +1,8 @@
 package com.luv2code.cruddemo.entity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "course")
 @Entity
 public class Course {
@@ -28,6 +30,10 @@ public class Course {
                            CascadeType.REFRESH })
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    List<Review> reviews;
 
     public Course() {}
 
@@ -58,6 +64,14 @@ public class Course {
 
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
