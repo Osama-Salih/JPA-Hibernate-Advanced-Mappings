@@ -1,6 +1,7 @@
 package com.luv2code.cruddemo.entity;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "course")
@@ -72,6 +73,13 @@ public class Course {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public void add(Review review) {
+        if (this.reviews == null) {
+            this.reviews = new ArrayList<>();
+        }
+        this.reviews.add(review);
     }
 
     @Override
