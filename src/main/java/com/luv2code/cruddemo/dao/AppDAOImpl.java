@@ -119,4 +119,11 @@ public class AppDAOImpl implements AppDAO {
         query.setParameter("data", id);
         return query.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void deleteCourseById(int id) {
+        Course course = this.entityManager.find(Course.class, id);
+        this.entityManager.remove(course);
+    }
 }
