@@ -10,21 +10,21 @@ public class Review {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "commit")
-    private String commit;
+    @Column(name = "comment")
+    private String comment;
 
     public Review() {}
 
-    public Review(String commit) {
-        this.commit = commit;
+    public Review(String comment) {
+        this.comment = comment;
     }
 
     public String getCommit() {
-        return commit;
+        return comment;
     }
 
-    public void setCommit(String commit) {
-        this.commit = commit;
+    public void setCommit(String comment) {
+        this.comment = comment;
     }
 
     public int getId() {
@@ -39,7 +39,7 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", commit='" + commit + '\'' +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }
