@@ -22,9 +22,7 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-//			createCourseAndReviews(appDAO);
-//			getCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+
 		};
 	}
 

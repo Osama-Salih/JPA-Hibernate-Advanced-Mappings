@@ -26,7 +26,6 @@ public class Course {
     @Column(name = "title")
     private String title;
 
-
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
                            CascadeType.REFRESH })
     @JoinColumn(name = "instructor_id")
@@ -35,6 +34,15 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     List<Review> reviews;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH })
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
     public Course() {}
 
@@ -71,6 +79,14 @@ public class Course {
         return reviews;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
@@ -80,6 +96,13 @@ public class Course {
             this.reviews = new ArrayList<>();
         }
         this.reviews.add(review);
+    }
+
+    public void addStudent(Student student) {
+        if (this.students == null) {
+            this.students = new ArrayList<>();
+        }
+        this.students.add(student);
     }
 
     @Override
