@@ -5,4 +5,5 @@ import com.luv2code.cruddemo.entity.Instructor;
 public interface AppDAO {
     void save(Instructor instructor);
     Instructor findInstructorById(Integer id);
+    void deleteInstructorById(Integer id);
 }
