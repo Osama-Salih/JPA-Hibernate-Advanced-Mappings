@@ -1,6 +1,7 @@
 package com.luv2code.cruddemo.dao;
 
 import com.luv2code.cruddemo.entity.Instructor;
+import com.luv2code.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,5 +33,21 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorById(Integer id) {
         Instructor instructor = this.entityManager.find(Instructor.class, id);
         this.entityManager.remove(instructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetail(Integer id) {
+        return this.entityManager.find(InstructorDetail.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorDetailById(Integer id) {
+        InstructorDetail instructorDetail = this.entityManager.find(InstructorDetail.class, id);
+
+//        remove the associated object reference
+//        break bi-directional link
+        instructorDetail.getInstructor().setInstructorDetail(null);
+        this.entityManager.remove(instructorDetail);
     }
 }
