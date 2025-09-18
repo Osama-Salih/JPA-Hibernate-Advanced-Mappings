@@ -2,6 +2,9 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "instructor")
 public class Instructor {
@@ -23,6 +26,8 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
+
+    private List<Course> courses;
 
     public Instructor() {}
 
@@ -70,6 +75,22 @@ public class Instructor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void add(Course course) {
+        if (courses == null) {
+            this.courses = new ArrayList<>();
+        }
+        this.courses.add(course);
+        course.setInstructor(this);
     }
 
     @Override
