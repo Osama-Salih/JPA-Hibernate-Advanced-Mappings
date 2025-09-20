@@ -15,4 +15,6 @@ public interface AppDAO {
     List<Course> findCoursesByInstructorId(Integer id);
     Instructor findInstructorByIdJoinFetch(Integer id);
     void update(Instructor instructor);
+    Course findCourseById(Integer id);
+    void update(Course course);
 }
