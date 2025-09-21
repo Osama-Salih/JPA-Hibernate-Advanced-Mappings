@@ -22,9 +22,6 @@ public class CruddemoApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(AppDAO appDao) {
 		return runner -> {
-//			createCourseAndReviews(appDao);
-//			retrieveCourseAndReviews(appDao);
-			deleteCourseAndReviews(appDao);
 		};
 	}
 
